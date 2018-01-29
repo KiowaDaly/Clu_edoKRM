@@ -4,10 +4,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,6 +24,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import cluedo.Cluedo_Character;
+
 public class Board {
 	
 	
@@ -33,13 +38,14 @@ public class Board {
 		JSplitPane SplitMainPanel=new JSplitPane(); //this allows us to splice the frame into smaller bits//
 		JLabel ImageLabel = new JLabel();
 		JSplitPane TopPanel =new JSplitPane();
+		
 		JPanel BottomPanel =new JPanel();
 		
 		MainFrame.setLayout(new BorderLayout());
 		MainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		MainFrame.add(SplitMainPanel);
 		
-		ImageLabel.setIcon(new ImageIcon("cluedo board.jpg")); //has to be image_label
+		ImageLabel.setIcon(new ImageIcon("board.jpg")); //has to be image_label
 		
 		TopPanel.setTopComponent(ImageLabel);
 		
@@ -67,6 +73,45 @@ public class Board {
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		TopPanel.setBottomComponent(scrollPane);
 		
+		//Creating a character list//
+				List<Cluedo_Character> Character_list = new ArrayList<Cluedo_Character>();
+				
+				
+				//only way i could think of, not a definate part of the code, let me know what you think//
+				Cluedo_Character Mr_Green = new Cluedo_Character("Mr.Green");
+				Cluedo_Character Miss_Scarlett = new Cluedo_Character("Miss Scarlett");
+				Cluedo_Character Colonel_Mustard = new Cluedo_Character("Colonel Mustard");
+				Cluedo_Character Mrs_White = new Cluedo_Character("Mrs.White");
+				Cluedo_Character Mrs_Peacock = new Cluedo_Character("Mrs_Peacock");
+				Cluedo_Character Prof_Plum = new Cluedo_Character("Professor Plum");
+				
+				//adding each of the new character Class objects to the List//
+				Character_list.add(Mr_Green);
+				Character_list.add(Miss_Scarlett);
+				Character_list.add(Colonel_Mustard);
+				Character_list.add(Mrs_White);
+				Character_list.add(Mrs_Peacock);
+				Character_list.add(Prof_Plum);
+				
+				
+				//printing out the characters to the text area//
+				textArea.append("Here is a list of characters!\n");//this is how we put infor onto the text area//
+					
+				for(int i = 0;i<Character_list.size();i++) {
+					textArea.append(Character_list.get(i).toString());
+					textArea.append("\n");
+				}
+				
+				textArea.append("\n\nEnter a command, then hit that submit button!\n");		
+
+				Submit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String input_text = TextField.getText();
+						textArea.append("\n\nYou entered:\n");
+						textArea.append(input_text);
+					}
+				});
+				
 		
 		
 		
@@ -77,5 +122,7 @@ public class Board {
 		MainFrame.pack();
 		MainFrame.setVisible(true);
 	}
+	
+}
 	
 }
