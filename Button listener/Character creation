@@ -1,0 +1,41 @@
+
+		//Creating a character list//
+		List<Cluedo_Character> Character_list = new ArrayList<Cluedo_Character>();
+		
+		
+		//only way i could think of, not a definate part of the code, let me know what you think//
+		Cluedo_Character Mr_Green = new Cluedo_Character("Mr.Green");
+		Cluedo_Character Miss_Scarlett = new Cluedo_Character("Miss Scarlett");
+		Cluedo_Character Colonel_Mustard = new Cluedo_Character("Colonel Mustard");
+		Cluedo_Character Mrs_White = new Cluedo_Character("Mrs.White");
+		Cluedo_Character Mrs_Peacock = new Cluedo_Character("Mrs_Peacock");
+		Cluedo_Character Prof_Plum = new Cluedo_Character("Professor Plum");
+		
+		//adding each of the new character Class objects to the List//
+		Character_list.add(Mr_Green);
+		Character_list.add(Miss_Scarlett);
+		Character_list.add(Colonel_Mustard);
+		Character_list.add(Mrs_White);
+		Character_list.add(Mrs_Peacock);
+		Character_list.add(Prof_Plum);
+		
+		
+		//printing out the characters to the text area//
+		textArea.append("Here is a list of characters!\n");//this is how we put infor onto the text area//
+			
+		for(int i = 0;i<Character_list.size();i++) {
+			textArea.append(Character_list.get(i).toString());
+			textArea.append("\n");
+		}
+		
+		textArea.append("\n\nEnter a command, then hit that submit button!\n");		
+
+		Submit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String input_text = textField.getText();
+				textArea.append("\n\nYou entered:\n");
+				textArea.append(input_text);
+			}
+		});
+		
+		
